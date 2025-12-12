@@ -1,0 +1,4 @@
+assets
+*.whl
+*.pth
+segmented_output
