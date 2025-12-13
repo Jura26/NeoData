@@ -1,9 +1,3 @@
-"""
-Facade Elements Segmentation using SAM 3 (Segment Anything Model 3)
-Uses Hugging Face Transformers: https://huggingface.co/facebook/sam3
-Segments components: seals, tin, screw, hole, and glass from facade images
-"""
-
 import os
 import cv2
 import torch
