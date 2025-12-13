@@ -138,92 +138,78 @@ def run_combined_detection():
         hole_masks = components.get('hole', [])
         seal_masks = components.get('seal', [])
         
-        # Total coverage per component
-        tin_coverage = sum(m.get('coverage_percent', 0) for m in tin_masks) / 100
-        glass_coverage = sum(m.get('coverage_percent', 0) for m in glass_masks) / 100
+        # Total coverage per component (coverage_percent is already in %)
+        # Use max coverage since masks can overlap
+        tin_coverage = sum(m.get('coverage_percent', 0) for m in tin_masks)  # in %
+        glass_coverage = sum(m.get('coverage_percent', 0) for m in glass_masks)
         screw_count = len(screw_masks)
         hole_count = len(hole_masks)
-        seal_coverage = sum(m.get('coverage_percent', 0) for m in seal_masks) / 100
+        seal_coverage = sum(m.get('coverage_percent', 0) for m in seal_masks)
         
         # Detect defects based on coverage analysis
         defects = []
         
-        # TIN detection - missing if low coverage
-        if tin_coverage < 0.15:
+        # TIN detection - missing if very low coverage (< 15% of image)
+        # Note: coverage_percent is already percentage, e.g., 1.47 means 1.47%
+        if tin_coverage < 15:  # Less than 15% tin coverage
             defects.append({
                 'component': 'tin',
                 'type': 'missing',
                 'confidence': 0.85,
                 'zone': 'full',
-                'coverage': tin_coverage,
+                'coverage_percent': tin_coverage,
                 'source': 'improved_segmentation'
             })
-        elif tin_coverage < 0.30:
+        elif tin_coverage < 30:  # 15-30% coverage = damaged
             defects.append({
                 'component': 'tin',
                 'type': 'damaged',
                 'confidence': 0.75,
                 'zone': 'partial',
-                'coverage': tin_coverage,
+                'coverage_percent': tin_coverage,
                 'source': 'improved_segmentation'
             })
         
-        # SEAL detection - missing if low coverage
-        if seal_coverage < 0.01:
+        # SEAL detection - SAM often doesn't detect seals well
+        # Only flag if absolutely no seal detected AND glass is present
+        if seal_coverage < 1 and glass_coverage > 5:
             defects.append({
                 'component': 'seal',
                 'type': 'missing',
-                'confidence': 0.80,
+                'confidence': 0.75,
                 'zone': 'full',
-                'coverage': seal_coverage,
+                'coverage_percent': seal_coverage,
                 'source': 'improved_segmentation'
             })
-        elif seal_coverage < 0.05:
+        elif seal_coverage < 3 and seal_coverage > 0:
             defects.append({
                 'component': 'seal',
                 'type': 'torn',
                 'confidence': 0.70,
                 'zone': 'partial',
-                'coverage': seal_coverage,
+                'coverage_percent': seal_coverage,
                 'source': 'improved_segmentation'
             })
         
-        # SCREW detection - compare with expected from CAD
-        expected_screws = len([c for c in cad_circles if c.get('radius', 0) < 15])
-        if screw_count < expected_screws * 0.5:
-            defects.append({
-                'component': 'screw',
-                'type': 'missing',
-                'confidence': 0.70,
-                'expected': expected_screws,
-                'detected': screw_count,
-                'source': 'improved_segmentation'
-            })
+        # DISABLED: Screw/Hole/Glass detection - too many false positives
+        # These would need better CAD matching or training data
         
-        # HOLE detection - compare with expected from CAD
-        expected_holes = len([c for c in cad_circles if c.get('radius', 0) >= 15])
-        if hole_count < expected_holes * 0.5:
-            defects.append({
-                'component': 'hole',
-                'type': 'missing',
-                'confidence': 0.70,
-                'expected': expected_holes,
-                'detected': hole_count,
-                'source': 'improved_segmentation'
-            })
+        # # SCREW detection - compare with expected from CAD
+        # expected_screws = len([c for c in cad_circles if c.get('radius', 0) < 15])
+        # if screw_count < expected_screws * 0.5:
+        #     defects.append({...})
         
-        # GLASS detection - look for fragmented masks (potential cracks)
-        if len(glass_masks) > 5:
-            # Many small glass segments could indicate cracks
-            avg_glass_size = sum(m.get('area_pixels', 0) for m in glass_masks) / len(glass_masks)
-            if avg_glass_size < total_pixels * 0.02:
-                defects.append({
-                    'component': 'glass',
-                    'type': 'crack',
-                    'confidence': 0.65,
-                    'fragments': len(glass_masks),
-                    'source': 'improved_segmentation'
-                })
+        # # HOLE detection - compare with expected from CAD  
+        # expected_holes = len([c for c in cad_circles if c.get('radius', 0) >= 15])
+        # if hole_count < expected_holes * 0.5:
+        #     defects.append({...})
+        
+        # # GLASS detection - look for fragmented masks
+        # if len(glass_masks) > 5:
+        #     avg_glass_size = sum(m.get('area_pixels', 0) for m in glass_masks) / len(glass_masks)
+        #     if avg_glass_size < total_pixels * 0.02:
+        #         defects.append({...})
+        
         
         # Filter high confidence only
         high_conf = [d for d in defects if d.get('confidence', 0) >= 0.70]
