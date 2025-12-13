@@ -1,0 +1,18 @@
+# Facade Element Detection Dataset
+# For training YOLO to detect: seal, tin, screw, hole, glass
+
+# Dataset paths (update these after exporting from Label Studio)
+path: ./dataset  # Root dataset directory
+train: images/train
+val: images/val
+
+# Classes - must match Label Studio labels exactly
+names:
+  0: seal
+  1: tin
+  2: screw
+  3: hole
+  4: glass
+
+# Number of classes
+nc: 5

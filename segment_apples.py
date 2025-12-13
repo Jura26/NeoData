@@ -1,8 +1,3 @@
-"""
-Apple Segmentation using Segment Anything Model (SAM)
-Based on: https://blog.roboflow.com/how-to-use-segment-anything-model-sam/
-"""
-
 import os
 import cv2
 import torch
@@ -47,7 +42,7 @@ def setup_sam_model():
         stability_score_thresh=0.92,
         crop_n_layers=1,
         crop_n_points_downscale_factor=2,
-        min_mask_region_area=100,  # Filter out small regions
+        min_mask_region_area=100,
     )
     
     return sam, mask_generator
