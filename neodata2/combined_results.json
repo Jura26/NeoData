@@ -1,0 +1,623 @@
+[
+  {
+    "image": "IMG_5349_2_facade_masks.json",
+    "original_jpeg": "IMG_5349 2.jpg",
+    "matched_model": "1096-1-CWAV-1-01A-A2D1-00.STP",
+    "detection_stats": {
+      "tin_coverage": 1.3027000000000002,
+      "glass_coverage": 0.6648999999999999,
+      "screw_count": 12,
+      "hole_count": 3,
+      "seal_coverage": 0.0,
+      "tin_masks": 34,
+      "glass_masks": 12
+    },
+    "defects": [
+      {
+        "component": "seal",
+        "type": "missing",
+        "confidence": 0.8,
+        "zone": "full",
+        "coverage": 0.0,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 2349,
+        "detected": 12,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "hole",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 104,
+        "detected": 3,
+        "source": "improved_segmentation"
+      }
+    ],
+    "all_defects": [
+      {
+        "component": "seal",
+        "type": "missing",
+        "confidence": 0.8,
+        "zone": "full",
+        "coverage": 0.0,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 2349,
+        "detected": 12,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "hole",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 104,
+        "detected": 3,
+        "source": "improved_segmentation"
+      }
+    ],
+    "ground_truth": [
+      {
+        "component": "tin",
+        "type": "missing",
+        "location": "bottom"
+      }
+    ],
+    "gt_match": {
+      "ground_truth_count": 1,
+      "detected_count": 3,
+      "matches": 0,
+      "recall": 0.0,
+      "precision": 0.0
+    }
+  },
+  {
+    "image": "IMG_5398_2_facade_masks.json",
+    "original_jpeg": "IMG_5398 2.jpg",
+    "matched_model": "1039-7-CWK5746-4LL0-DI31-4_01.STP",
+    "detection_stats": {
+      "tin_coverage": 1.0323,
+      "glass_coverage": 0.6271,
+      "screw_count": 4,
+      "hole_count": 0,
+      "seal_coverage": 0.0313,
+      "tin_masks": 21,
+      "glass_masks": 7
+    },
+    "defects": [
+      {
+        "component": "seal",
+        "type": "torn",
+        "confidence": 0.7,
+        "zone": "partial",
+        "coverage": 0.0313,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 2963,
+        "detected": 4,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "hole",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 2,
+        "detected": 0,
+        "source": "improved_segmentation"
+      }
+    ],
+    "all_defects": [
+      {
+        "component": "seal",
+        "type": "torn",
+        "confidence": 0.7,
+        "zone": "partial",
+        "coverage": 0.0313,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 2963,
+        "detected": 4,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "hole",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 2,
+        "detected": 0,
+        "source": "improved_segmentation"
+      }
+    ],
+    "ground_truth": [
+      {
+        "component": "tin",
+        "type": "missing",
+        "location": "bottom"
+      }
+    ],
+    "gt_match": {
+      "ground_truth_count": 1,
+      "detected_count": 3,
+      "matches": 0,
+      "recall": 0.0,
+      "precision": 0.0
+    }
+  },
+  {
+    "image": "IMG_5463_3_facade_masks.json",
+    "original_jpeg": "IMG_5463 3.jpg",
+    "matched_model": "1039-7-CWK5746-4LL0-DI31-4_01.STP",
+    "detection_stats": {
+      "tin_coverage": 1.0564,
+      "glass_coverage": 0.3425,
+      "screw_count": 12,
+      "hole_count": 7,
+      "seal_coverage": 0.020500000000000004,
+      "tin_masks": 41,
+      "glass_masks": 20
+    },
+    "defects": [
+      {
+        "component": "seal",
+        "type": "torn",
+        "confidence": 0.7,
+        "zone": "partial",
+        "coverage": 0.020500000000000004,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 2963,
+        "detected": 12,
+        "source": "improved_segmentation"
+      }
+    ],
+    "all_defects": [
+      {
+        "component": "seal",
+        "type": "torn",
+        "confidence": 0.7,
+        "zone": "partial",
+        "coverage": 0.020500000000000004,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 2963,
+        "detected": 12,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "glass",
+        "type": "crack",
+        "confidence": 0.65,
+        "fragments": 20,
+        "source": "improved_segmentation"
+      }
+    ],
+    "ground_truth": [
+      {
+        "component": "tin",
+        "type": "missing",
+        "location": "bottom-right"
+      }
+    ],
+    "gt_match": {
+      "ground_truth_count": 1,
+      "detected_count": 2,
+      "matches": 0,
+      "recall": 0.0,
+      "precision": 0.0
+    }
+  },
+  {
+    "image": "IMG_5465_3_facade_masks.json",
+    "original_jpeg": "IMG_5465 3.jpg",
+    "matched_model": "1039-1-CWQ4946-4GT2-4000-4_01.STP",
+    "detection_stats": {
+      "tin_coverage": 1.6861000000000002,
+      "glass_coverage": 0.22260000000000002,
+      "screw_count": 30,
+      "hole_count": 19,
+      "seal_coverage": 0.0,
+      "tin_masks": 30,
+      "glass_masks": 3
+    },
+    "defects": [
+      {
+        "component": "seal",
+        "type": "missing",
+        "confidence": 0.8,
+        "zone": "full",
+        "coverage": 0.0,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 1714,
+        "detected": 30,
+        "source": "improved_segmentation"
+      }
+    ],
+    "all_defects": [
+      {
+        "component": "seal",
+        "type": "missing",
+        "confidence": 0.8,
+        "zone": "full",
+        "coverage": 0.0,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 1714,
+        "detected": 30,
+        "source": "improved_segmentation"
+      }
+    ],
+    "ground_truth": [
+      {
+        "component": "tin",
+        "type": "missing",
+        "location": "center"
+      }
+    ],
+    "gt_match": {
+      "ground_truth_count": 1,
+      "detected_count": 2,
+      "matches": 0,
+      "recall": 0.0,
+      "precision": 0.0
+    }
+  },
+  {
+    "image": "IMG_5471_3_facade_masks.json",
+    "original_jpeg": "IMG_5471 3.jpg",
+    "matched_model": "1039-7-CWK5746-4LL0-DI31-4_01.STP",
+    "detection_stats": {
+      "tin_coverage": 1.2692999999999999,
+      "glass_coverage": 0.41009999999999996,
+      "screw_count": 0,
+      "hole_count": 15,
+      "seal_coverage": 0.115,
+      "tin_masks": 41,
+      "glass_masks": 5
+    },
+    "defects": [
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 2963,
+        "detected": 0,
+        "source": "improved_segmentation"
+      }
+    ],
+    "all_defects": [
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 2963,
+        "detected": 0,
+        "source": "improved_segmentation"
+      }
+    ],
+    "ground_truth": [
+      {
+        "component": "tin",
+        "type": "missing",
+        "location": "top-left"
+      },
+      {
+        "component": "seal",
+        "type": "torn",
+        "location": "left"
+      }
+    ],
+    "gt_match": {
+      "ground_truth_count": 2,
+      "detected_count": 1,
+      "matches": 0,
+      "recall": 0.0,
+      "precision": 0.0
+    }
+  },
+  {
+    "image": "IMG_5494_3_facade_masks.json",
+    "original_jpeg": "IMG_5494 3.jpg",
+    "matched_model": "1039-1-CWQ4946-4GT2-4000-4_01.STP",
+    "detection_stats": {
+      "tin_coverage": 1.5634000000000001,
+      "glass_coverage": 0.0735,
+      "screw_count": 29,
+      "hole_count": 11,
+      "seal_coverage": 0.0,
+      "tin_masks": 24,
+      "glass_masks": 2
+    },
+    "defects": [
+      {
+        "component": "seal",
+        "type": "missing",
+        "confidence": 0.8,
+        "zone": "full",
+        "coverage": 0.0,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 1714,
+        "detected": 29,
+        "source": "improved_segmentation"
+      }
+    ],
+    "all_defects": [
+      {
+        "component": "seal",
+        "type": "missing",
+        "confidence": 0.8,
+        "zone": "full",
+        "coverage": 0.0,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 1714,
+        "detected": 29,
+        "source": "improved_segmentation"
+      }
+    ],
+    "ground_truth": [
+      {
+        "component": "screw",
+        "type": "missing",
+        "location": "center-right"
+      },
+      {
+        "component": "tin",
+        "type": "missing",
+        "location": "right"
+      }
+    ],
+    "gt_match": {
+      "ground_truth_count": 2,
+      "detected_count": 2,
+      "matches": 1,
+      "recall": 0.5,
+      "precision": 0.5
+    }
+  },
+  {
+    "image": "IMG_5620_facade_masks.json",
+    "original_jpeg": "IMG 5620.jpg",
+    "matched_model": "1039-1-CWQ4946-4GT2-4000-4_01.STP",
+    "detection_stats": {
+      "tin_coverage": 2.1449000000000003,
+      "glass_coverage": 0.0,
+      "screw_count": 21,
+      "hole_count": 13,
+      "seal_coverage": 0.0,
+      "tin_masks": 69,
+      "glass_masks": 0
+    },
+    "defects": [
+      {
+        "component": "seal",
+        "type": "missing",
+        "confidence": 0.8,
+        "zone": "full",
+        "coverage": 0.0,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 1714,
+        "detected": 21,
+        "source": "improved_segmentation"
+      }
+    ],
+    "all_defects": [
+      {
+        "component": "seal",
+        "type": "missing",
+        "confidence": 0.8,
+        "zone": "full",
+        "coverage": 0.0,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 1714,
+        "detected": 21,
+        "source": "improved_segmentation"
+      }
+    ],
+    "ground_truth": null
+  },
+  {
+    "image": "IMG_5621_facade_masks.json",
+    "original_jpeg": "IMG 5621.jpg",
+    "matched_model": "1039-1-CWQ4946-4GT2-4000-4_01.STP",
+    "detection_stats": {
+      "tin_coverage": 1.9409999999999998,
+      "glass_coverage": 0.0,
+      "screw_count": 12,
+      "hole_count": 10,
+      "seal_coverage": 0.0,
+      "tin_masks": 55,
+      "glass_masks": 0
+    },
+    "defects": [
+      {
+        "component": "seal",
+        "type": "missing",
+        "confidence": 0.8,
+        "zone": "full",
+        "coverage": 0.0,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 1714,
+        "detected": 12,
+        "source": "improved_segmentation"
+      }
+    ],
+    "all_defects": [
+      {
+        "component": "seal",
+        "type": "missing",
+        "confidence": 0.8,
+        "zone": "full",
+        "coverage": 0.0,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 1714,
+        "detected": 12,
+        "source": "improved_segmentation"
+      }
+    ],
+    "ground_truth": null
+  },
+  {
+    "image": "IMG_5640_facade_masks.json",
+    "original_jpeg": "IMG 5640.jpg",
+    "matched_model": "1039-1-CWQ4946-4GT2-4000-4_01.STP",
+    "detection_stats": {
+      "tin_coverage": 1.3084,
+      "glass_coverage": 0.0,
+      "screw_count": 26,
+      "hole_count": 3,
+      "seal_coverage": 0.0,
+      "tin_masks": 57,
+      "glass_masks": 0
+    },
+    "defects": [
+      {
+        "component": "seal",
+        "type": "missing",
+        "confidence": 0.8,
+        "zone": "full",
+        "coverage": 0.0,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 1714,
+        "detected": 26,
+        "source": "improved_segmentation"
+      }
+    ],
+    "all_defects": [
+      {
+        "component": "seal",
+        "type": "missing",
+        "confidence": 0.8,
+        "zone": "full",
+        "coverage": 0.0,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 1714,
+        "detected": 26,
+        "source": "improved_segmentation"
+      }
+    ],
+    "ground_truth": null
+  },
+  {
+    "image": "IMG_9827_facade_masks.json",
+    "original_jpeg": "IMG 9827.jpg",
+    "matched_model": "1039-1-CWQ4946-4GT2-4000-4_01.STP",
+    "detection_stats": {
+      "tin_coverage": 0.6278,
+      "glass_coverage": 0.274,
+      "screw_count": 0,
+      "hole_count": 0,
+      "seal_coverage": 0.0,
+      "tin_masks": 35,
+      "glass_masks": 3
+    },
+    "defects": [
+      {
+        "component": "seal",
+        "type": "missing",
+        "confidence": 0.8,
+        "zone": "full",
+        "coverage": 0.0,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 1714,
+        "detected": 0,
+        "source": "improved_segmentation"
+      }
+    ],
+    "all_defects": [
+      {
+        "component": "seal",
+        "type": "missing",
+        "confidence": 0.8,
+        "zone": "full",
+        "coverage": 0.0,
+        "source": "improved_segmentation"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.7,
+        "expected": 1714,
+        "detected": 0,
+        "source": "improved_segmentation"
+      }
+    ],
+    "ground_truth": null
+  }
+]
