@@ -21,6 +21,34 @@ import sys
 import json
 import re
 
+# =============================================================================
+# HYPERPARAMETERS - Tune these values to optimize detection
+# =============================================================================
+
+# TIN DETECTION THRESHOLDS
+GAP_THRESHOLD = 13          # Zone coverage < this = potential gap (lower = stricter)
+GOOD_COVERAGE = 8          # Zone coverage >= this = has tin (higher = stricter)
+CENTER_MIN_COVERAGE = 15   # Minimum center zone coverage to trigger detection
+
+# TIN DETECTION CONDITIONS
+MIN_GAPS_STRONG = 3        # Number of gaps for high confidence detection
+MIN_GAPS_MEDIUM = 2        # Number of gaps for medium confidence detection  
+MIN_GAPS_WEAK = 1          # Number of gaps for low confidence detection
+MIN_COVERED_FOR_WEAK = 2   # Minimum covered zones needed for weak detection
+
+# CONFIDENCE SCORES
+CONFIDENCE_STRONG = 0.85   # Confidence for 3+ gaps
+CONFIDENCE_MEDIUM = 0.75   # Confidence for 2 gaps
+CONFIDENCE_WEAK = 0.70     # Confidence for 1 gap
+CONFIDENCE_THRESHOLD = 0.70  # Minimum confidence to report defect
+
+# SCREW/GLASS/SEAL DETECTION (currently disabled)
+ENABLE_SCREW_DETECTION = False
+ENABLE_GLASS_DETECTION = False
+ENABLE_SEAL_DETECTION = False
+
+# =============================================================================
+
 
 def combine_defects(*defect_lists) -> list:
     """
@@ -57,14 +85,15 @@ def run_combined_detection():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     parent_dir = os.path.dirname(base_dir)
     
-    # Use new segmented_output_improved structure
-    seg_improved_dir = os.path.join(parent_dir, "segmented_output_improved", "negative")
-    json_dir = os.path.join(parent_dir, "TRAIN", "negative")
-    jpeg_dir = os.path.join(parent_dir, "TRAIN_JPG", "negative")
+    # Use new segmented_output_improved structure (both positive and negative)
+    seg_improved_base = os.path.join(parent_dir, "segmented_output_improved")
+    
+    # Validation ground truth folder
+    validation_dir = os.path.join(parent_dir, "validation")
     
     # Check if improved segmentation exists
-    if not os.path.exists(seg_improved_dir):
-        print(f"ERROR: {seg_improved_dir} not found!")
+    if not os.path.exists(seg_improved_base):
+        print(f"ERROR: {seg_improved_base} not found!")
         print("Run the SAM_Improved_Segmentation.ipynb notebook first.")
         return []
     
@@ -86,166 +115,213 @@ def run_combined_detection():
     
     results = []
     
-    # Iterate over mask JSON files in segmented_output_improved
-    for mask_json in sorted(os.listdir(seg_improved_dir)):
-        if not mask_json.endswith('_masks.json'):
+    # Process both positive and negative folders
+    for folder in ['negative', 'positive']:
+        seg_improved_dir = os.path.join(seg_improved_base, folder)
+        if not os.path.exists(seg_improved_dir):
+            print(f"  Skipping {folder}/ - not found")
             continue
         
-        mask_json_path = os.path.join(seg_improved_dir, mask_json)
+        print(f"\n--- Processing {folder}/ ---")
         
-        # Load mask data
-        with open(mask_json_path) as f:
-            mask_data = json.load(f)
-        
-        # Extract base name: IMG_5349_2_facade_masks.json -> IMG_5349_2_facade
-        base_name = mask_json.replace('_masks.json', '')
-        
-        # Map to original JPEG name: IMG_5349_2_facade -> IMG_5349 2.jpg
-        jpeg_base = base_name.replace('_facade', '')
-        jpeg_name = re.sub(r'_(\d+)$', r' \1', jpeg_base) + '.jpg'
-        
-        # Get CAD model from v2 classifier (original JPEG)
-        matched_model = jpeg_to_model.get(jpeg_name)
-        if not matched_model:
-            jpeg_name_alt = jpeg_base.replace('_', ' ') + '.jpg'
-            matched_model = jpeg_to_model.get(jpeg_name_alt, list(cad_models.keys())[0])
-        
-        # Find GT JSON
-        json_name = re.sub(r'_(\d+)$', r' \1', jpeg_base) + '.json'
-        json_path = os.path.join(json_dir, json_name)
-        
-        gt = None
-        if os.path.exists(json_path):
-            with open(json_path) as f:
-                gt_data = json.load(f)
-                gt = gt_data.get('defects', [])
-        
-        # Get image size from mask data
-        img_size = mask_data.get('size', [1536, 688])
-        w, h = img_size[0], img_size[1]
-        total_pixels = w * h
-        
-        # Get CAD circles for the matched model
-        cad_circles = cad_models[matched_model]['circles']
-        
-        # Analyze components from mask data
-        components = mask_data.get('components', {})
-        
-        # Calculate coverage from mask JSON
-        tin_masks = components.get('tin', [])
-        glass_masks = components.get('glass', [])
-        screw_masks = components.get('screw', [])
-        hole_masks = components.get('hole', [])
-        seal_masks = components.get('seal', [])
-        
-        # Total coverage per component (coverage_percent is already in %)
-        # Use max coverage since masks can overlap
-        tin_coverage = sum(m.get('coverage_percent', 0) for m in tin_masks)  # in %
-        glass_coverage = sum(m.get('coverage_percent', 0) for m in glass_masks)
-        screw_count = len(screw_masks)
-        hole_count = len(hole_masks)
-        seal_coverage = sum(m.get('coverage_percent', 0) for m in seal_masks)
-        
-        # Detect defects based on coverage analysis
-        defects = []
-        
-        # TIN detection - missing if very low coverage (< 15% of image)
-        # Note: coverage_percent is already percentage, e.g., 1.47 means 1.47%
-        if tin_coverage < 15:  # Less than 15% tin coverage
-            defects.append({
-                'component': 'tin',
-                'type': 'missing',
-                'confidence': 0.85,
-                'zone': 'full',
-                'coverage_percent': tin_coverage,
-                'source': 'improved_segmentation'
-            })
-        elif tin_coverage < 30:  # 15-30% coverage = damaged
-            defects.append({
-                'component': 'tin',
-                'type': 'damaged',
-                'confidence': 0.75,
-                'zone': 'partial',
-                'coverage_percent': tin_coverage,
-                'source': 'improved_segmentation'
-            })
-        
-        # SEAL detection - SAM often doesn't detect seals well
-        # Only flag if absolutely no seal detected AND glass is present
-        if seal_coverage < 1 and glass_coverage > 5:
-            defects.append({
-                'component': 'seal',
-                'type': 'missing',
-                'confidence': 0.75,
-                'zone': 'full',
-                'coverage_percent': seal_coverage,
-                'source': 'improved_segmentation'
-            })
-        elif seal_coverage < 3 and seal_coverage > 0:
-            defects.append({
-                'component': 'seal',
-                'type': 'torn',
-                'confidence': 0.70,
-                'zone': 'partial',
-                'coverage_percent': seal_coverage,
-                'source': 'improved_segmentation'
-            })
-        
-        # DISABLED: Screw/Hole/Glass detection - too many false positives
-        # These would need better CAD matching or training data
-        
-        # # SCREW detection - compare with expected from CAD
-        # expected_screws = len([c for c in cad_circles if c.get('radius', 0) < 15])
-        # if screw_count < expected_screws * 0.5:
-        #     defects.append({...})
-        
-        # # HOLE detection - compare with expected from CAD  
-        # expected_holes = len([c for c in cad_circles if c.get('radius', 0) >= 15])
-        # if hole_count < expected_holes * 0.5:
-        #     defects.append({...})
-        
-        # # GLASS detection - look for fragmented masks
-        # if len(glass_masks) > 5:
-        #     avg_glass_size = sum(m.get('area_pixels', 0) for m in glass_masks) / len(glass_masks)
-        #     if avg_glass_size < total_pixels * 0.02:
-        #         defects.append({...})
-        
-        
-        # Filter high confidence only
-        high_conf = [d for d in defects if d.get('confidence', 0) >= 0.70]
-        
-        # Build result
-        result = {
-            'image': mask_json,
-            'original_jpeg': jpeg_name,
-            'matched_model': matched_model,
-            'detection_stats': {
-                'tin_coverage': tin_coverage,
-                'glass_coverage': glass_coverage,
-                'screw_count': screw_count,
-                'hole_count': hole_count,
-                'seal_coverage': seal_coverage,
-                'tin_masks': len(tin_masks),
-                'glass_masks': len(glass_masks),
-            },
-            'defects': high_conf,
-            'all_defects': defects,
-            'ground_truth': gt
-        }
-        
-        # Match with GT
-        if gt:
-            result['gt_match'] = match_with_ground_truth(high_conf, gt)
-        
-        results.append(result)
-        
-        # Print
-        n = len(high_conf)
-        gt_str = ""
-        if gt:
-            matches = result.get('gt_match', {}).get('matches', 0)
-            gt_str = f" (GT: {matches}/{len(gt)} matched)"
-        print(f"  {mask_json[:45]}: {n} defects{gt_str}")
+        # Iterate over mask JSON files in segmented_output_improved
+        for mask_json in sorted(os.listdir(seg_improved_dir)):
+            if not mask_json.endswith('_masks.json'):
+                continue
+            
+            mask_json_path = os.path.join(seg_improved_dir, mask_json)
+            
+            # Load mask data
+            with open(mask_json_path) as f:
+                mask_data = json.load(f)
+            
+            # Extract base name: IMG_5349_2_facade_masks.json -> IMG_5349_2_facade
+            base_name = mask_json.replace('_masks.json', '')
+            
+            # Map to original JPEG name: IMG_5349_2_facade -> IMG_5349 2.jpg
+            jpeg_base = base_name.replace('_facade', '')
+            jpeg_name = re.sub(r'_(\d+)$', r' \1', jpeg_base) + '.jpg'
+            
+            # Also try without number suffix: IMG_5470_facade -> IMG_5470.jpg
+            jpeg_name_simple = jpeg_base + '.jpg'
+            
+            # Get CAD model from v2 classifier (original JPEG)
+            matched_model = jpeg_to_model.get(jpeg_name)
+            if not matched_model:
+                jpeg_name_alt = jpeg_base.replace('_', ' ') + '.jpg'
+                matched_model = jpeg_to_model.get(jpeg_name_alt)
+            if not matched_model:
+                matched_model = jpeg_to_model.get(jpeg_name_simple, list(cad_models.keys())[0])
+            
+            # Find GT JSON in validation folder
+            # Try multiple name formats
+            gt = None
+            json_names_to_try = [
+                re.sub(r'_(\d+)$', r' \1', jpeg_base) + '.json',  # IMG_5349 2.json
+                jpeg_base + '.json',  # IMG_5470.json
+                jpeg_base.replace('_', ' ') + '.json',  # IMG 5470.json
+            ]
+            
+            for json_name in json_names_to_try:
+                json_path = os.path.join(validation_dir, json_name)
+                if os.path.exists(json_path):
+                    with open(json_path) as f:
+                        gt_data = json.load(f)
+                        gt = gt_data.get('defects', [])
+                    break
+            
+            # Get image size from mask data
+            img_size = mask_data.get('size', [1536, 688])
+            w, h = img_size[0], img_size[1]
+            total_pixels = w * h
+            
+            # Get CAD circles for the matched model
+            cad_circles = cad_models[matched_model]['circles']
+            
+            # Analyze components from mask data
+            components = mask_data.get('components', {})
+            
+            # Calculate coverage from mask JSON
+            tin_masks = components.get('tin', [])
+            glass_masks = components.get('glass', [])
+            screw_masks = components.get('screw', [])
+            hole_masks = components.get('hole', [])
+            seal_masks = components.get('seal', [])
+            
+            # Total coverage per component (coverage_percent is already in %)
+            tin_coverage = sum(m.get('coverage_percent', 0) for m in tin_masks)  # in %
+            glass_coverage = sum(m.get('coverage_percent', 0) for m in glass_masks)
+            screw_count = len(screw_masks)
+            hole_count = len(hole_masks)
+            seal_coverage = sum(m.get('coverage_percent', 0) for m in seal_masks)
+            
+            # Detect defects based on ZONE analysis
+            # Divide image into 3x3 grid and check each zone
+            defects = []
+            
+            # Analyze tin by zones - look for gaps where tin SHOULD be
+            zones = ['top-left', 'top', 'top-right', 'left', 'center', 'right', 
+                     'bottom-left', 'bottom', 'bottom-right']
+            zone_tin = {z: 0 for z in zones}
+            
+            for m in tin_masks:
+                bbox = m.get('bbox')  # [x_min, y_min, x_max, y_max]
+                if bbox:
+                    x_min, y_min, x_max, y_max = bbox
+                    cx = (x_min + x_max) / 2
+                    cy = (y_min + y_max) / 2
+                    
+                    # Determine zone (3x3 grid)
+                    col = 'left' if cx < w/3 else ('right' if cx > 2*w/3 else '')
+                    row = 'top' if cy < h/3 else ('bottom' if cy > 2*h/3 else '')
+                    
+                    if row and col:
+                        zone = f"{row}-{col}"
+                    elif row:
+                        zone = row
+                    elif col:
+                        zone = col
+                    else:
+                        zone = 'center'
+                    
+                    zone_tin[zone] += m.get('coverage_percent', 0)
+            
+            # === TIN DEFECT DETECTION ===
+            # Strategy: Zone asymmetry detection (uses hyperparameters from top of file)
+            expected_tin_zones = ['top', 'bottom', 'left', 'right']
+            
+            # Find zones with low coverage (potential gaps)
+            tin_gaps = [z for z in expected_tin_zones if zone_tin[z] < GAP_THRESHOLD]
+            
+            # Find zones with good coverage
+            well_covered = [z for z in expected_tin_zones if zone_tin[z] >= GOOD_COVERAGE]
+            
+            center_coverage = zone_tin.get('center', 0)
+            
+            # Zone asymmetry detection
+            if center_coverage > CENTER_MIN_COVERAGE and len(well_covered) >= 1:
+                if len(tin_gaps) >= MIN_GAPS_STRONG:
+                    defects.append({
+                        'component': 'tin',
+                        'type': 'missing',
+                        'confidence': CONFIDENCE_STRONG,
+                        'zones_missing': tin_gaps,
+                        'zones_present': well_covered,
+                        'zone_coverage': zone_tin,
+                        'source': 'zone_analysis'
+                    })
+                elif len(tin_gaps) >= MIN_GAPS_MEDIUM and len(well_covered) >= 1:
+                    defects.append({
+                        'component': 'tin',
+                        'type': 'missing',
+                        'confidence': CONFIDENCE_MEDIUM,
+                        'zones_missing': tin_gaps,
+                        'zones_present': well_covered,
+                        'zone_coverage': zone_tin,
+                        'source': 'zone_analysis'
+                    })
+                elif len(tin_gaps) >= MIN_GAPS_WEAK and len(well_covered) >= MIN_COVERED_FOR_WEAK:
+                    defects.append({
+                        'component': 'tin',
+                        'type': 'missing',
+                        'confidence': CONFIDENCE_WEAK,
+                        'zones_missing': tin_gaps,
+                        'zones_present': well_covered,
+                        'zone_coverage': zone_tin,
+                        'source': 'zone_analysis'
+                    })
+            
+            # === SCREW DEFECT DETECTION ===
+            if ENABLE_SCREW_DETECTION:
+                # Add screw detection logic here
+                pass
+            
+            # === GLASS DEFECT DETECTION ===
+            if ENABLE_GLASS_DETECTION:
+                # Add glass detection logic here
+                pass
+            
+            # === SEAL DEFECT DETECTION ===
+            if ENABLE_SEAL_DETECTION:
+                # Add seal detection logic here
+                pass
+            
+            # Filter: only keep defects above confidence threshold
+            high_conf = [d for d in defects if d.get('confidence', 0) >= CONFIDENCE_THRESHOLD]
+            
+            # Build result
+            result = {
+                'image': mask_json,
+                'folder': folder,
+                'original_jpeg': jpeg_name,
+                'matched_model': matched_model,
+                'detection_stats': {
+                    'tin_coverage': tin_coverage,
+                    'glass_coverage': glass_coverage,
+                    'screw_count': screw_count,
+                    'hole_count': hole_count,
+                    'seal_coverage': seal_coverage,
+                    'tin_masks': len(tin_masks),
+                    'glass_masks': len(glass_masks),
+                },
+                'defects': high_conf,
+                'all_defects': defects,
+                'ground_truth': gt
+            }
+            
+            # Match with GT
+            if gt:
+                result['gt_match'] = match_with_ground_truth(high_conf, gt)
+            
+            results.append(result)
+            
+            # Print
+            n = len(high_conf)
+            gt_str = ""
+            if gt:
+                matches = result.get('gt_match', {}).get('matches', 0)
+                gt_str = f" (GT: {matches}/{len(gt)} matched)"
+            print(f"  {mask_json[:45]}: {n} defects{gt_str}")
     
     # Save
     output_path = os.path.join(base_dir, "combined_results.json")
@@ -268,10 +344,19 @@ def run_combined_detection():
         total_det += gt_match.get('detected_count', 0)
         total_match += gt_match.get('matches', 0)
     
+    # Calculate score: TP=+1, FP=-1, FN=0
+    tp = total_match
+    fp = total_det - total_match
+    fn = total_gt - total_match
+    score = tp - fp
+    
     print(f"Total images: {len(results)}")
     print(f"Ground truth defects: {total_gt}")
     print(f"Detected defects: {total_det}")
-    print(f"Correct matches: {total_match}")
+    print(f"Correct matches (TP): {tp}")
+    print(f"False positives (FP): {fp}")
+    print(f"Missed (FN): {fn}")
+    print(f"\nSCORE: {score} (TP - FP = {tp} - {fp})")
     if total_gt > 0:
         print(f"RECALL: {total_match/total_gt:.1%}")
     if total_det > 0:
@@ -287,11 +372,14 @@ def match_with_ground_truth(detected: list, ground_truth: list) -> dict:
     """
     type_equivalent = {
         'missing': ['missing', 'damaged', 'half_tightened'],  # half_tightened screw = problem
-        'damaged': ['damaged', 'missing', 'crack', 'torn'],
+        'damaged': ['damaged', 'missing', 'crack', 'torn', 'cracked'],
         'torn': ['torn', 'damaged', 'missing'],  # seal torn = damaged/missing
+        'cracked': ['cracked', 'damaged', 'crack'],  # glass cracked
+        'crack': ['crack', 'cracked', 'damaged'],
     }
     
     matches = 0
+    matched_gt = []
     
     for gt in ground_truth:
         gt_comp = gt.get('component', '').lower()
@@ -307,12 +395,14 @@ def match_with_ground_truth(detected: list, ground_truth: list) -> dict:
             
             if det_comp == gt_comp and det_type in acceptable_types:
                 matches += 1
+                matched_gt.append(gt)
                 break
     
     return {
         'ground_truth_count': len(ground_truth),
         'detected_count': len(detected),
         'matches': matches,
+        'matched_gt': matched_gt,
         'recall': matches / len(ground_truth) if ground_truth else 0,
         'precision': matches / len(detected) if detected else 0
     }
