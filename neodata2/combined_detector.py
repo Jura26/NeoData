@@ -26,25 +26,26 @@ import re
 # =============================================================================
 
 # TIN DETECTION THRESHOLDS
-GAP_THRESHOLD = 13          # Zone coverage < this = potential gap (lower = stricter)
-GOOD_COVERAGE = 8          # Zone coverage >= this = has tin (higher = stricter)
-CENTER_MIN_COVERAGE = 15   # Minimum center zone coverage to trigger detection
+GAP_THRESHOLD = 13          # Zone coverage < this = potential gap
+GOOD_COVERAGE = 14          # Zone coverage >= this = has tin  
+CENTER_MIN_COVERAGE = 5   # Minimum center zone coverage       
 
 # TIN DETECTION CONDITIONS
-MIN_GAPS_STRONG = 3        # Number of gaps for high confidence detection
-MIN_GAPS_MEDIUM = 2        # Number of gaps for medium confidence detection  
-MIN_GAPS_WEAK = 1          # Number of gaps for low confidence detection
-MIN_COVERED_FOR_WEAK = 2   # Minimum covered zones needed for weak detection
+MIN_GAPS_STRONG = 3        # Gaps for high confidence
+MIN_GAPS_MEDIUM = 1        # Gaps for medium confidence        
+MIN_GAPS_WEAK = 2          # Gaps for low confidence
+MIN_COVERED_FOR_WEAK = 1   # Covered zones for weak detection  
 
 # CONFIDENCE SCORES
 CONFIDENCE_STRONG = 0.85   # Confidence for 3+ gaps
 CONFIDENCE_MEDIUM = 0.75   # Confidence for 2 gaps
-CONFIDENCE_WEAK = 0.70     # Confidence for 1 gap
-CONFIDENCE_THRESHOLD = 0.70  # Minimum confidence to report defect
+CONFIDENCE_WEAK = 0.7     # Confidence for 1 gap
+CONFIDENCE_THRESHOLD = 0.6  # Min confidence to report
+
 
 # SCREW/GLASS/SEAL DETECTION (currently disabled)
-ENABLE_SCREW_DETECTION = False
-ENABLE_GLASS_DETECTION = False
+ENABLE_SCREW_DETECTION = True
+ENABLE_GLASS_DETECTION = True
 ENABLE_SEAL_DETECTION = False
 
 # =============================================================================
@@ -273,13 +274,61 @@ def run_combined_detection():
             
             # === SCREW DEFECT DETECTION ===
             if ENABLE_SCREW_DETECTION:
-                # Add screw detection logic here
-                pass
+                # Label as missing screw if a circular hole exists without a screw in it
+                import numpy as np
+                screw_centers = []
+                for m in screw_masks:
+                    bbox = m.get('bbox')
+                    if bbox:
+                        x_min, y_min, x_max, y_max = bbox
+                        cx = (x_min + x_max) / 2
+                        cy = (y_min + y_max) / 2
+                        screw_centers.append((cx, cy))
+                # For each hole, check if a screw is present nearby
+                threshold = min(w, h) * 0.08  # 8% of image size as matching threshold
+                missing_flagged = False
+                for m in hole_masks:
+                    if missing_flagged:
+                        break
+                    bbox = m.get('bbox')
+                    area = m.get('area_pixels', m.get('area', 0))
+                    if bbox and area > 0:
+                        # Only consider very small, very circular holes (area < 0.2% of image, aspect ratio ~1)
+                        if area < 0.002 * w * h:
+                            x_min, y_min, x_max, y_max = bbox
+                            width = x_max - x_min
+                            height = y_max - y_min
+                            aspect_ratio = width / height if height > 0 else 0
+                            if 0.6 < aspect_ratio < 1.5:
+                                cx = (x_min + x_max) / 2
+                                cy = (y_min + y_max) / 2
+                                # Check if any screw is close to this hole
+                                found = False
+                                for sx, sy in screw_centers:
+                                    dist = np.hypot(sx - cx, sy - cy)
+                                    if dist < threshold:
+                                        found = True
+                                        break
+                                if not found:
+                                    defects.append({
+                                        'component': 'screw',
+                                        'type': 'missing',
+                                        'confidence': 0.85,
+                                        'hole_position': [cx, cy],
+                                        'source': 'hole_without_screw'
+                                    })
+                                    missing_flagged = True
             
             # === GLASS DEFECT DETECTION ===
             if ENABLE_GLASS_DETECTION:
-                # Add glass detection logic here
-                pass
+                broken_glass_masks = components.get('broken_glass', [])
+                if broken_glass_masks:
+                    defects.append({
+                        'component': 'glass',
+                        'type': 'cracked',
+                        'confidence': 0.85,
+                        'source': 'broken_glass_mask'
+                    })
             
             # === SEAL DEFECT DETECTION ===
             if ENABLE_SEAL_DETECTION:
@@ -306,7 +355,6 @@ def run_combined_detection():
                 },
                 'defects': high_conf,
                 'all_defects': defects,
-                'ground_truth': gt
             }
             
             # Match with GT
@@ -340,7 +388,6 @@ def run_combined_detection():
     
     for r in results:
         gt_match = r.get('gt_match', {})
-        total_gt += gt_match.get('ground_truth_count', 0)
         total_det += gt_match.get('detected_count', 0)
         total_match += gt_match.get('matches', 0)
     
@@ -351,7 +398,6 @@ def run_combined_detection():
     score = tp - fp
     
     print(f"Total images: {len(results)}")
-    print(f"Ground truth defects: {total_gt}")
     print(f"Detected defects: {total_det}")
     print(f"Correct matches (TP): {tp}")
     print(f"False positives (FP): {fp}")
@@ -399,7 +445,6 @@ def match_with_ground_truth(detected: list, ground_truth: list) -> dict:
                 break
     
     return {
-        'ground_truth_count': len(ground_truth),
         'detected_count': len(detected),
         'matches': matches,
         'matched_gt': matched_gt,

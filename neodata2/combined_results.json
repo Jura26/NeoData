@@ -24,8 +24,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "bottom"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 6.58,
@@ -52,8 +51,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "bottom"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 6.58,
@@ -69,15 +67,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "bottom"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -159,15 +149,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "bottom"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -220,6 +202,16 @@
           "bottom-right": 2.11
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          1146.5,
+          18.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -247,18 +239,20 @@
           "bottom-right": 2.11
         },
         "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
+      },
       {
-        "component": "tin",
+        "component": "screw",
         "type": "missing",
-        "location": "center"
+        "confidence": 0.85,
+        "hole_position": [
+          1146.5,
+          18.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 1,
+      "detected_count": 2,
       "matches": 1,
       "matched_gt": [
         {
@@ -268,7 +262,7 @@
         }
       ],
       "recall": 1.0,
-      "precision": 1.0
+      "precision": 0.5
     }
   },
   {
@@ -339,15 +333,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "left"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -429,15 +415,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "center"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -469,13 +447,12 @@
       {
         "component": "tin",
         "type": "missing",
-        "confidence": 0.7,
+        "confidence": 0.75,
         "zones_missing": [
           "bottom"
         ],
         "zones_present": [
           "top",
-          "bottom",
           "left",
           "right"
         ],
@@ -491,19 +468,28 @@
           "bottom-right": 0.34
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          1360.5,
+          29.5
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
       {
         "component": "tin",
         "type": "missing",
-        "confidence": 0.7,
+        "confidence": 0.75,
         "zones_missing": [
           "bottom"
         ],
         "zones_present": [
           "top",
-          "bottom",
           "left",
           "right"
         ],
@@ -519,18 +505,20 @@
           "bottom-right": 0.34
         },
         "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
+      },
       {
-        "component": "tin",
+        "component": "screw",
         "type": "missing",
-        "location": "center"
+        "confidence": 0.85,
+        "hole_position": [
+          1360.5,
+          29.5
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 1,
+      "detected_count": 2,
       "matches": 1,
       "matched_gt": [
         {
@@ -540,7 +528,7 @@
         }
       ],
       "recall": 1.0,
-      "precision": 1.0
+      "precision": 0.5
     }
   },
   {
@@ -561,7 +549,7 @@
       {
         "component": "tin",
         "type": "missing",
-        "confidence": 0.7,
+        "confidence": 0.75,
         "zones_missing": [
           "right"
         ],
@@ -582,13 +570,23 @@
           "bottom-right": 2.68
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          1031.5,
+          27.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
       {
         "component": "tin",
         "type": "missing",
-        "confidence": 0.7,
+        "confidence": 0.75,
         "zones_missing": [
           "right"
         ],
@@ -609,18 +607,20 @@
           "bottom-right": 2.68
         },
         "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
+      },
       {
-        "component": "tin",
+        "component": "screw",
         "type": "missing",
-        "location": "center"
+        "confidence": 0.85,
+        "hole_position": [
+          1031.5,
+          27.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 1,
+      "detected_count": 2,
       "matches": 1,
       "matched_gt": [
         {
@@ -630,7 +630,7 @@
         }
       ],
       "recall": 1.0,
-      "precision": 1.0
+      "precision": 0.5
     }
   },
   {
@@ -651,7 +651,7 @@
       {
         "component": "tin",
         "type": "missing",
-        "confidence": 0.7,
+        "confidence": 0.75,
         "zones_missing": [
           "right"
         ],
@@ -678,7 +678,7 @@
       {
         "component": "tin",
         "type": "missing",
-        "confidence": 0.7,
+        "confidence": 0.75,
         "zones_missing": [
           "right"
         ],
@@ -701,15 +701,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "center"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -791,15 +783,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "bottom"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -831,13 +815,11 @@
       {
         "component": "tin",
         "type": "missing",
-        "confidence": 0.7,
+        "confidence": 0.75,
         "zones_missing": [
           "right"
         ],
         "zones_present": [
-          "top",
-          "bottom",
           "left"
         ],
         "zone_coverage": {
@@ -858,13 +840,11 @@
       {
         "component": "tin",
         "type": "missing",
-        "confidence": 0.7,
+        "confidence": 0.75,
         "zones_missing": [
           "right"
         ],
         "zones_present": [
-          "top",
-          "bottom",
           "left"
         ],
         "zone_coverage": {
@@ -881,15 +861,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "bottom"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -971,15 +943,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "center"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -1017,8 +981,6 @@
           "bottom"
         ],
         "zones_present": [
-          "top",
-          "bottom",
           "left",
           "right"
         ],
@@ -1034,6 +996,16 @@
           "bottom-right": 2.81
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          1264.0,
+          384.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -1046,8 +1018,6 @@
           "bottom"
         ],
         "zones_present": [
-          "top",
-          "bottom",
           "left",
           "right"
         ],
@@ -1063,18 +1033,20 @@
           "bottom-right": 2.81
         },
         "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
+      },
       {
-        "component": "tin",
+        "component": "screw",
         "type": "missing",
-        "location": "bottom-right"
+        "confidence": 0.85,
+        "hole_position": [
+          1264.0,
+          384.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 1,
+      "detected_count": 2,
       "matches": 1,
       "matched_gt": [
         {
@@ -1084,7 +1056,7 @@
         }
       ],
       "recall": 1.0,
-      "precision": 1.0
+      "precision": 0.5
     }
   },
   {
@@ -1126,6 +1098,16 @@
           "bottom-right": 2.77
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          1515.5,
+          91.5
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -1153,18 +1135,20 @@
           "bottom-right": 2.77
         },
         "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
+      },
       {
-        "component": "tin",
+        "component": "screw",
         "type": "missing",
-        "location": "bottom-right"
+        "confidence": 0.85,
+        "hole_position": [
+          1515.5,
+          91.5
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 1,
+      "detected_count": 2,
       "matches": 1,
       "matched_gt": [
         {
@@ -1174,7 +1158,7 @@
         }
       ],
       "recall": 1.0,
-      "precision": 1.0
+      "precision": 0.5
     }
   },
   {
@@ -1192,8 +1176,7 @@
       "glass_masks": 3
     },
     "defects": [],
-    "all_defects": [],
-    "ground_truth": []
+    "all_defects": []
   },
   {
     "image": "IMG_5456_3_facade_masks.json",
@@ -1263,15 +1246,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "bottom-right"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -1309,7 +1284,6 @@
           "right"
         ],
         "zones_present": [
-          "top",
           "bottom",
           "left"
         ],
@@ -1337,7 +1311,6 @@
           "right"
         ],
         "zones_present": [
-          "top",
           "bottom",
           "left"
         ],
@@ -1355,15 +1328,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "bottom-right"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -1402,8 +1367,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "bottom"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 3.69,
@@ -1430,8 +1394,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "bottom"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 3.69,
@@ -1447,15 +1410,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "center"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -1537,15 +1492,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "bottom-right"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -1584,7 +1531,6 @@
           "right"
         ],
         "zones_present": [
-          "top",
           "left"
         ],
         "zone_coverage": {
@@ -1599,6 +1545,16 @@
           "bottom-right": 1.21
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          1335.0,
+          180.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -1612,7 +1568,6 @@
           "right"
         ],
         "zones_present": [
-          "top",
           "left"
         ],
         "zone_coverage": {
@@ -1627,18 +1582,20 @@
           "bottom-right": 1.21
         },
         "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
+      },
       {
-        "component": "tin",
+        "component": "screw",
         "type": "missing",
-        "location": "bottom-right"
+        "confidence": 0.85,
+        "hole_position": [
+          1335.0,
+          180.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 1,
+      "detected_count": 2,
       "matches": 1,
       "matched_gt": [
         {
@@ -1648,7 +1605,7 @@
         }
       ],
       "recall": 1.0,
-      "precision": 1.0
+      "precision": 0.5
     }
   },
   {
@@ -1719,15 +1676,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "bottom-left"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -1766,9 +1715,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "bottom",
-          "left"
+          "bottom"
         ],
         "zone_coverage": {
           "top-left": 2.12,
@@ -1795,9 +1742,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "bottom",
-          "left"
+          "bottom"
         ],
         "zone_coverage": {
           "top-left": 2.12,
@@ -1813,15 +1758,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "center"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -1851,85 +1788,34 @@
     },
     "defects": [
       {
-        "component": "tin",
+        "component": "screw",
         "type": "missing",
         "confidence": 0.85,
-        "zones_missing": [
-          "top",
-          "bottom",
-          "left",
-          "right"
+        "hole_position": [
+          1175.0,
+          550.5
         ],
-        "zones_present": [
-          "right"
-        ],
-        "zone_coverage": {
-          "top-left": 5.71,
-          "top": 7.839999999999999,
-          "top-right": 5.9,
-          "left": 1.5999999999999999,
-          "center": 50.989999999999995,
-          "right": 9.430000000000001,
-          "bottom-left": 5.8,
-          "bottom": 0.76,
-          "bottom-right": 0.8600000000000001
-        },
-        "source": "zone_analysis"
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
       {
-        "component": "tin",
+        "component": "screw",
         "type": "missing",
         "confidence": 0.85,
-        "zones_missing": [
-          "top",
-          "bottom",
-          "left",
-          "right"
+        "hole_position": [
+          1175.0,
+          550.5
         ],
-        "zones_present": [
-          "right"
-        ],
-        "zone_coverage": {
-          "top-left": 5.71,
-          "top": 7.839999999999999,
-          "top-right": 5.9,
-          "left": 1.5999999999999999,
-          "center": 50.989999999999995,
-          "right": 9.430000000000001,
-          "bottom-left": 5.8,
-          "bottom": 0.76,
-          "bottom-right": 0.8600000000000001
-        },
-        "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "top-left"
-      },
-      {
-        "component": "seal",
-        "type": "torn",
-        "location": "left"
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 2,
       "detected_count": 1,
-      "matches": 1,
-      "matched_gt": [
-        {
-          "component": "tin",
-          "type": "missing",
-          "location": "top-left"
-        }
-      ],
-      "recall": 0.5,
-      "precision": 1.0
+      "matches": 0,
+      "matched_gt": [],
+      "recall": 0.0,
+      "precision": 0.0
     }
   },
   {
@@ -1971,6 +1857,16 @@
           "bottom-right": 3.28
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          209.0,
+          750.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -1998,23 +1894,20 @@
           "bottom-right": 3.28
         },
         "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "top-left"
       },
       {
-        "component": "seal",
-        "type": "torn",
-        "location": "left"
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          209.0,
+          750.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 2,
-      "detected_count": 1,
+      "detected_count": 2,
       "matches": 1,
       "matched_gt": [
         {
@@ -2024,7 +1917,7 @@
         }
       ],
       "recall": 0.5,
-      "precision": 1.0
+      "precision": 0.5
     }
   },
   {
@@ -2095,20 +1988,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "screw",
-        "type": "missing",
-        "location": "center-right"
-      },
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "right"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 2,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -2190,20 +2070,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "screw",
-        "type": "missing",
-        "location": "center-right"
-      },
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "right"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 2,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -2231,27 +2098,72 @@
       "tin_masks": 23,
       "glass_masks": 26
     },
-    "defects": [],
-    "all_defects": [],
-    "ground_truth": [
-      {
-        "component": "screw",
-        "type": "missing",
-        "location": "bottom-right"
-      },
+    "defects": [
       {
         "component": "tin",
         "type": "missing",
-        "location": "right"
+        "confidence": 0.75,
+        "zones_missing": [
+          "top"
+        ],
+        "zones_present": [
+          "bottom",
+          "left",
+          "right"
+        ],
+        "zone_coverage": {
+          "top-left": 6.86,
+          "top": 2.65,
+          "top-right": 6.92,
+          "left": 14.28,
+          "center": 8.4,
+          "right": 16.939999999999998,
+          "bottom-left": 9.65,
+          "bottom": 44.849999999999994,
+          "bottom-right": 4.1
+        },
+        "source": "zone_analysis"
+      }
+    ],
+    "all_defects": [
+      {
+        "component": "tin",
+        "type": "missing",
+        "confidence": 0.75,
+        "zones_missing": [
+          "top"
+        ],
+        "zones_present": [
+          "bottom",
+          "left",
+          "right"
+        ],
+        "zone_coverage": {
+          "top-left": 6.86,
+          "top": 2.65,
+          "top-right": 6.92,
+          "left": 14.28,
+          "center": 8.4,
+          "right": 16.939999999999998,
+          "bottom-left": 9.65,
+          "bottom": 44.849999999999994,
+          "bottom-right": 4.1
+        },
+        "source": "zone_analysis"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 2,
-      "detected_count": 0,
-      "matches": 0,
-      "matched_gt": [],
-      "recall": 0.0,
-      "precision": 0
+      "detected_count": 1,
+      "matches": 1,
+      "matched_gt": [
+        {
+          "component": "tin",
+          "type": "missing",
+          "location": "right"
+        }
+      ],
+      "recall": 0.5,
+      "precision": 1.0
     }
   },
   {
@@ -2268,22 +2180,42 @@
       "tin_masks": 46,
       "glass_masks": 34
     },
-    "defects": [],
-    "all_defects": [],
-    "ground_truth": [
+    "defects": [
       {
         "component": "screw",
         "type": "missing",
-        "location": "bottom-left"
+        "confidence": 0.85,
+        "hole_position": [
+          578.0,
+          1505.0
+        ],
+        "source": "hole_without_screw"
+      }
+    ],
+    "all_defects": [
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          578.0,
+          1505.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 0,
-      "matches": 0,
-      "matched_gt": [],
-      "recall": 0.0,
-      "precision": 0
+      "detected_count": 1,
+      "matches": 1,
+      "matched_gt": [
+        {
+          "component": "screw",
+          "type": "missing",
+          "location": "bottom-left"
+        }
+      ],
+      "recall": 1.0,
+      "precision": 1.0
     }
   },
   {
@@ -2304,7 +2236,7 @@
       {
         "component": "tin",
         "type": "missing",
-        "confidence": 0.7,
+        "confidence": 0.75,
         "zones_missing": [
           "left"
         ],
@@ -2325,13 +2257,23 @@
           "bottom-right": 3.92
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          778.0,
+          267.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
       {
         "component": "tin",
         "type": "missing",
-        "confidence": 0.7,
+        "confidence": 0.75,
         "zones_missing": [
           "left"
         ],
@@ -2352,22 +2294,30 @@
           "bottom-right": 3.92
         },
         "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
+      },
       {
         "component": "screw",
         "type": "missing",
-        "location": "bottom-center"
+        "confidence": 0.85,
+        "hole_position": [
+          778.0,
+          267.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 1,
-      "matches": 0,
-      "matched_gt": [],
-      "recall": 0.0,
-      "precision": 0.0
+      "detected_count": 2,
+      "matches": 1,
+      "matched_gt": [
+        {
+          "component": "screw",
+          "type": "missing",
+          "location": "bottom-center"
+        }
+      ],
+      "recall": 1.0,
+      "precision": 0.5
     }
   },
   {
@@ -2384,22 +2334,42 @@
       "tin_masks": 55,
       "glass_masks": 0
     },
-    "defects": [],
-    "all_defects": [],
-    "ground_truth": [
+    "defects": [
       {
         "component": "screw",
         "type": "missing",
-        "location": "bottom-center"
+        "confidence": 0.85,
+        "hole_position": [
+          785.5,
+          175.0
+        ],
+        "source": "hole_without_screw"
+      }
+    ],
+    "all_defects": [
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          785.5,
+          175.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 0,
-      "matches": 0,
-      "matched_gt": [],
-      "recall": 0.0,
-      "precision": 0
+      "detected_count": 1,
+      "matches": 1,
+      "matched_gt": [
+        {
+          "component": "screw",
+          "type": "missing",
+          "location": "bottom-center"
+        }
+      ],
+      "recall": 1.0,
+      "precision": 1.0
     }
   },
   {
@@ -2427,7 +2397,6 @@
           "right"
         ],
         "zones_present": [
-          "top",
           "bottom"
         ],
         "zone_coverage": {
@@ -2455,7 +2424,6 @@
           "right"
         ],
         "zones_present": [
-          "top",
           "bottom"
         ],
         "zone_coverage": {
@@ -2472,15 +2440,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "screw",
-        "type": "missing",
-        "location": "bottom-center"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 0,
       "matched_gt": [],
@@ -2513,8 +2473,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "bottom"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 0,
@@ -2541,8 +2500,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "bottom"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 0,
@@ -2558,15 +2516,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "screw",
-        "type": "missing",
-        "location": "bottom-right"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 0,
       "matched_gt": [],
@@ -2599,8 +2549,7 @@
         ],
         "zones_present": [
           "top",
-          "bottom",
-          "right"
+          "bottom"
         ],
         "zone_coverage": {
           "top-left": 0.08,
@@ -2614,6 +2563,16 @@
           "bottom-right": 3.7100000000000004
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          763.5,
+          243.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -2627,8 +2586,7 @@
         ],
         "zones_present": [
           "top",
-          "bottom",
-          "right"
+          "bottom"
         ],
         "zone_coverage": {
           "top-left": 0.08,
@@ -2642,22 +2600,30 @@
           "bottom-right": 3.7100000000000004
         },
         "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
+      },
       {
         "component": "screw",
         "type": "missing",
-        "location": "center"
+        "confidence": 0.85,
+        "hole_position": [
+          763.5,
+          243.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 1,
-      "matches": 0,
-      "matched_gt": [],
-      "recall": 0.0,
-      "precision": 0.0
+      "detected_count": 2,
+      "matches": 1,
+      "matched_gt": [
+        {
+          "component": "screw",
+          "type": "missing",
+          "location": "center"
+        }
+      ],
+      "recall": 1.0,
+      "precision": 0.5
     }
   },
   {
@@ -2685,8 +2651,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "right"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 8.6,
@@ -2700,6 +2665,16 @@
           "bottom-right": 9.379999999999999
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          900.0,
+          210.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -2713,8 +2688,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "right"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 8.6,
@@ -2728,22 +2702,30 @@
           "bottom-right": 9.379999999999999
         },
         "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
+      },
       {
         "component": "screw",
         "type": "missing",
-        "location": "bottom-right"
+        "confidence": 0.85,
+        "hole_position": [
+          900.0,
+          210.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 1,
-      "matches": 0,
-      "matched_gt": [],
-      "recall": 0.0,
-      "precision": 0.0
+      "detected_count": 2,
+      "matches": 1,
+      "matched_gt": [
+        {
+          "component": "screw",
+          "type": "missing",
+          "location": "bottom-right"
+        }
+      ],
+      "recall": 1.0,
+      "precision": 0.5
     }
   },
   {
@@ -2771,8 +2753,7 @@
         ],
         "zones_present": [
           "top",
-          "bottom",
-          "right"
+          "bottom"
         ],
         "zone_coverage": {
           "top-left": 0,
@@ -2786,6 +2767,16 @@
           "bottom-right": 1.8400000000000003
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          1070.5,
+          430.5
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -2799,8 +2790,7 @@
         ],
         "zones_present": [
           "top",
-          "bottom",
-          "right"
+          "bottom"
         ],
         "zone_coverage": {
           "top-left": 0,
@@ -2814,18 +2804,20 @@
           "bottom-right": 1.8400000000000003
         },
         "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
+      },
       {
-        "component": "tin",
+        "component": "screw",
         "type": "missing",
-        "location": "bottom"
+        "confidence": 0.85,
+        "hole_position": [
+          1070.5,
+          430.5
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 1,
+      "detected_count": 2,
       "matches": 1,
       "matched_gt": [
         {
@@ -2835,7 +2827,7 @@
         }
       ],
       "recall": 1.0,
-      "precision": 1.0
+      "precision": 0.5
     }
   },
   {
@@ -2862,7 +2854,6 @@
           "left"
         ],
         "zones_present": [
-          "bottom",
           "right"
         ],
         "zone_coverage": {
@@ -2889,7 +2880,6 @@
           "left"
         ],
         "zones_present": [
-          "bottom",
           "right"
         ],
         "zone_coverage": {
@@ -2906,15 +2896,7 @@
         "source": "zone_analysis"
       }
     ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "center"
-      }
-    ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
       "matches": 1,
       "matched_gt": [
@@ -2942,82 +2924,14 @@
       "tin_masks": 28,
       "glass_masks": 30
     },
-    "defects": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "confidence": 0.85,
-        "zones_missing": [
-          "top",
-          "bottom",
-          "left",
-          "right"
-        ],
-        "zones_present": [
-          "top"
-        ],
-        "zone_coverage": {
-          "top-left": 9.91,
-          "top": 11.98,
-          "top-right": 5.07,
-          "left": 3.13,
-          "center": 32.66,
-          "right": 4.93,
-          "bottom-left": 0,
-          "bottom": 3.09,
-          "bottom-right": 0.4
-        },
-        "source": "zone_analysis"
-      }
-    ],
-    "all_defects": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "confidence": 0.85,
-        "zones_missing": [
-          "top",
-          "bottom",
-          "left",
-          "right"
-        ],
-        "zones_present": [
-          "top"
-        ],
-        "zone_coverage": {
-          "top-left": 9.91,
-          "top": 11.98,
-          "top-right": 5.07,
-          "left": 3.13,
-          "center": 32.66,
-          "right": 4.93,
-          "bottom-left": 0,
-          "bottom": 3.09,
-          "bottom-right": 0.4
-        },
-        "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "location": "center-right"
-      }
-    ],
+    "defects": [],
+    "all_defects": [],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 1,
-      "matches": 1,
-      "matched_gt": [
-        {
-          "component": "tin",
-          "type": "missing",
-          "location": "center-right"
-        }
-      ],
-      "recall": 1.0,
-      "precision": 1.0
+      "detected_count": 0,
+      "matches": 0,
+      "matched_gt": [],
+      "recall": 0.0,
+      "precision": 0
     }
   },
   {
@@ -3045,8 +2959,7 @@
         ],
         "zones_present": [
           "top",
-          "left",
-          "right"
+          "left"
         ],
         "zone_coverage": {
           "top-left": 4.42,
@@ -3060,6 +2973,16 @@
           "bottom-right": 30.259999999999998
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          891.5,
+          706.5
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -3073,8 +2996,7 @@
         ],
         "zones_present": [
           "top",
-          "left",
-          "right"
+          "left"
         ],
         "zone_coverage": {
           "top-left": 4.42,
@@ -3088,22 +3010,30 @@
           "bottom-right": 30.259999999999998
         },
         "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
+      },
       {
         "component": "screw",
         "type": "missing",
-        "location": "center"
+        "confidence": 0.85,
+        "hole_position": [
+          891.5,
+          706.5
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 1,
-      "matches": 0,
-      "matched_gt": [],
-      "recall": 0.0,
-      "precision": 0.0
+      "detected_count": 2,
+      "matches": 1,
+      "matched_gt": [
+        {
+          "component": "screw",
+          "type": "missing",
+          "location": "center"
+        }
+      ],
+      "recall": 1.0,
+      "precision": 0.5
     }
   },
   {
@@ -3122,76 +3052,40 @@
     },
     "defects": [
       {
-        "component": "tin",
+        "component": "screw",
         "type": "missing",
         "confidence": 0.85,
-        "zones_missing": [
-          "top",
-          "bottom",
-          "left"
+        "hole_position": [
+          242.0,
+          713.0
         ],
-        "zones_present": [
-          "top",
-          "left",
-          "right"
-        ],
-        "zone_coverage": {
-          "top-left": 0.12,
-          "top": 10.99,
-          "top-right": 1.63,
-          "left": 9.19,
-          "center": 61.260000000000005,
-          "right": 13.239999999999998,
-          "bottom-left": 8.629999999999999,
-          "bottom": 1.95,
-          "bottom-right": 0
-        },
-        "source": "zone_analysis"
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
       {
-        "component": "tin",
-        "type": "missing",
-        "confidence": 0.85,
-        "zones_missing": [
-          "top",
-          "bottom",
-          "left"
-        ],
-        "zones_present": [
-          "top",
-          "left",
-          "right"
-        ],
-        "zone_coverage": {
-          "top-left": 0.12,
-          "top": 10.99,
-          "top-right": 1.63,
-          "left": 9.19,
-          "center": 61.260000000000005,
-          "right": 13.239999999999998,
-          "bottom-left": 8.629999999999999,
-          "bottom": 1.95,
-          "bottom-right": 0
-        },
-        "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
-      {
         "component": "screw",
         "type": "missing",
-        "location": "bottom-left"
+        "confidence": 0.85,
+        "hole_position": [
+          242.0,
+          713.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
-      "matches": 0,
-      "matched_gt": [],
-      "recall": 0.0,
-      "precision": 0.0
+      "matches": 1,
+      "matched_gt": [
+        {
+          "component": "screw",
+          "type": "missing",
+          "location": "bottom-left"
+        }
+      ],
+      "recall": 1.0,
+      "precision": 1.0
     }
   },
   {
@@ -3210,74 +3104,40 @@
     },
     "defects": [
       {
-        "component": "tin",
+        "component": "screw",
         "type": "missing",
         "confidence": 0.85,
-        "zones_missing": [
-          "top",
-          "bottom",
-          "left",
-          "right"
+        "hole_position": [
+          1126.0,
+          817.0
         ],
-        "zones_present": [
-          "bottom"
-        ],
-        "zone_coverage": {
-          "top-left": 2.33,
-          "top": 1.44,
-          "top-right": 4.53,
-          "left": 4.2,
-          "center": 87.80000000000001,
-          "right": 0,
-          "bottom-left": 15.61,
-          "bottom": 11.39,
-          "bottom-right": 0
-        },
-        "source": "zone_analysis"
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
       {
-        "component": "tin",
-        "type": "missing",
-        "confidence": 0.85,
-        "zones_missing": [
-          "top",
-          "bottom",
-          "left",
-          "right"
-        ],
-        "zones_present": [
-          "bottom"
-        ],
-        "zone_coverage": {
-          "top-left": 2.33,
-          "top": 1.44,
-          "top-right": 4.53,
-          "left": 4.2,
-          "center": 87.80000000000001,
-          "right": 0,
-          "bottom-left": 15.61,
-          "bottom": 11.39,
-          "bottom-right": 0
-        },
-        "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
-      {
         "component": "screw",
         "type": "missing",
-        "location": "bottom-right"
+        "confidence": 0.85,
+        "hole_position": [
+          1126.0,
+          817.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
       "detected_count": 1,
-      "matches": 0,
-      "matched_gt": [],
-      "recall": 0.0,
-      "precision": 0.0
+      "matches": 1,
+      "matched_gt": [
+        {
+          "component": "screw",
+          "type": "missing",
+          "location": "bottom-right"
+        }
+      ],
+      "recall": 1.0,
+      "precision": 1.0
     }
   },
   {
@@ -3319,6 +3179,16 @@
           "bottom-right": 16.26
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          1167.5,
+          521.5
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -3346,22 +3216,30 @@
           "bottom-right": 16.26
         },
         "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
+      },
       {
         "component": "screw",
         "type": "missing",
-        "location": "center-right"
+        "confidence": 0.85,
+        "hole_position": [
+          1167.5,
+          521.5
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 1,
-      "matches": 0,
-      "matched_gt": [],
-      "recall": 0.0,
-      "precision": 0.0
+      "detected_count": 2,
+      "matches": 1,
+      "matched_gt": [
+        {
+          "component": "screw",
+          "type": "missing",
+          "location": "center-right"
+        }
+      ],
+      "recall": 1.0,
+      "precision": 0.5
     }
   },
   {
@@ -3378,78 +3256,14 @@
       "tin_masks": 37,
       "glass_masks": 14
     },
-    "defects": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "confidence": 0.85,
-        "zones_missing": [
-          "top",
-          "bottom",
-          "left"
-        ],
-        "zones_present": [
-          "bottom",
-          "left",
-          "right"
-        ],
-        "zone_coverage": {
-          "top-left": 12.239999999999998,
-          "top": 4.630000000000001,
-          "top-right": 4.630000000000002,
-          "left": 8.940000000000001,
-          "center": 20.1,
-          "right": 13.91,
-          "bottom-left": 0.25,
-          "bottom": 10.23,
-          "bottom-right": 0
-        },
-        "source": "zone_analysis"
-      }
-    ],
-    "all_defects": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "confidence": 0.85,
-        "zones_missing": [
-          "top",
-          "bottom",
-          "left"
-        ],
-        "zones_present": [
-          "bottom",
-          "left",
-          "right"
-        ],
-        "zone_coverage": {
-          "top-left": 12.239999999999998,
-          "top": 4.630000000000001,
-          "top-right": 4.630000000000002,
-          "left": 8.940000000000001,
-          "center": 20.1,
-          "right": 13.91,
-          "bottom-left": 0.25,
-          "bottom": 10.23,
-          "bottom-right": 0
-        },
-        "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
-      {
-        "component": "screw",
-        "type": "missing",
-        "location": "bottom-right"
-      }
-    ],
+    "defects": [],
+    "all_defects": [],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 1,
+      "detected_count": 0,
       "matches": 0,
       "matched_gt": [],
       "recall": 0.0,
-      "precision": 0.0
+      "precision": 0
     }
   },
   {
@@ -3477,8 +3291,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "left"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 8.83,
@@ -3492,6 +3305,16 @@
           "bottom-right": 5.03
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          873.5,
+          8.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -3505,8 +3328,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "left"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 8.83,
@@ -3520,22 +3342,30 @@
           "bottom-right": 5.03
         },
         "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": [
+      },
       {
         "component": "screw",
         "type": "missing",
-        "location": "top-right"
+        "confidence": 0.85,
+        "hole_position": [
+          873.5,
+          8.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 1,
-      "matches": 0,
-      "matched_gt": [],
-      "recall": 0.0,
-      "precision": 0.0
+      "detected_count": 2,
+      "matches": 1,
+      "matched_gt": [
+        {
+          "component": "screw",
+          "type": "missing",
+          "location": "top-right"
+        }
+      ],
+      "recall": 1.0,
+      "precision": 0.5
     }
   },
   {
@@ -3552,22 +3382,34 @@
       "tin_masks": 35,
       "glass_masks": 3
     },
-    "defects": [],
-    "all_defects": [],
-    "ground_truth": [
+    "defects": [
       {
         "component": "glass",
         "type": "cracked",
-        "location": "center"
+        "confidence": 0.85,
+        "source": "broken_glass_mask"
+      }
+    ],
+    "all_defects": [
+      {
+        "component": "glass",
+        "type": "cracked",
+        "confidence": 0.85,
+        "source": "broken_glass_mask"
       }
     ],
     "gt_match": {
-      "ground_truth_count": 1,
-      "detected_count": 0,
-      "matches": 0,
-      "matched_gt": [],
-      "recall": 0.0,
-      "precision": 0
+      "detected_count": 1,
+      "matches": 1,
+      "matched_gt": [
+        {
+          "component": "glass",
+          "type": "cracked",
+          "location": "center"
+        }
+      ],
+      "recall": 1.0,
+      "precision": 1.0
     }
   },
   {
@@ -3595,8 +3437,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "bottom"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 0.5,
@@ -3623,8 +3464,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "bottom"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 0.5,
@@ -3639,8 +3479,7 @@
         },
         "source": "zone_analysis"
       }
-    ],
-    "ground_truth": null
+    ]
   },
   {
     "image": "IMG_5478_3_facade_masks.json",
@@ -3681,6 +3520,16 @@
           "bottom-right": 0
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          709.0,
+          550.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -3708,9 +3557,18 @@
           "bottom-right": 0
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          709.0,
+          550.0
+        ],
+        "source": "hole_without_screw"
       }
-    ],
-    "ground_truth": null
+    ]
   },
   {
     "image": "IMG_5653_facade_masks.json",
@@ -3737,7 +3595,6 @@
           "right"
         ],
         "zones_present": [
-          "top",
           "bottom"
         ],
         "zone_coverage": {
@@ -3752,6 +3609,16 @@
           "bottom-right": 1.77
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          252.5,
+          289.5
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -3765,7 +3632,6 @@
           "right"
         ],
         "zones_present": [
-          "top",
           "bottom"
         ],
         "zone_coverage": {
@@ -3780,9 +3646,18 @@
           "bottom-right": 1.77
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          252.5,
+          289.5
+        ],
+        "source": "hole_without_screw"
       }
-    ],
-    "ground_truth": []
+    ]
   },
   {
     "image": "IMG_5658_facade_masks.json",
@@ -3809,9 +3684,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "left",
-          "right"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 2.41,
@@ -3825,6 +3698,16 @@
           "bottom-right": 6.26
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          305.5,
+          371.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -3838,9 +3721,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "left",
-          "right"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 2.41,
@@ -3854,9 +3735,18 @@
           "bottom-right": 6.26
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          305.5,
+          371.0
+        ],
+        "source": "hole_without_screw"
       }
-    ],
-    "ground_truth": []
+    ]
   },
   {
     "image": "IMG_5659_facade_masks.json",
@@ -3897,6 +3787,16 @@
           "bottom-right": 4.55
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          266.5,
+          702.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -3924,9 +3824,18 @@
           "bottom-right": 4.55
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          266.5,
+          702.0
+        ],
+        "source": "hole_without_screw"
       }
-    ],
-    "ground_truth": []
+    ]
   },
   {
     "image": "IMG_5672_facade_masks.json",
@@ -3952,9 +3861,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "left",
-          "right"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 10.24,
@@ -3968,6 +3875,16 @@
           "bottom-right": 4.09
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          162.0,
+          138.5
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -3980,9 +3897,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "left",
-          "right"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 10.24,
@@ -3996,9 +3911,18 @@
           "bottom-right": 4.09
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          162.0,
+          138.5
+        ],
+        "source": "hole_without_screw"
       }
-    ],
-    "ground_truth": []
+    ]
   },
   {
     "image": "IMG_5675_facade_masks.json",
@@ -4014,67 +3938,8 @@
       "tin_masks": 50,
       "glass_masks": 6
     },
-    "defects": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "confidence": 0.85,
-        "zones_missing": [
-          "top",
-          "bottom",
-          "left",
-          "right"
-        ],
-        "zones_present": [
-          "top",
-          "left",
-          "right"
-        ],
-        "zone_coverage": {
-          "top-left": 3.27,
-          "top": 12.93,
-          "top-right": 2.31,
-          "left": 9.5,
-          "center": 58.809999999999995,
-          "right": 8.9,
-          "bottom-left": 16.39,
-          "bottom": 4.34,
-          "bottom-right": 1.41
-        },
-        "source": "zone_analysis"
-      }
-    ],
-    "all_defects": [
-      {
-        "component": "tin",
-        "type": "missing",
-        "confidence": 0.85,
-        "zones_missing": [
-          "top",
-          "bottom",
-          "left",
-          "right"
-        ],
-        "zones_present": [
-          "top",
-          "left",
-          "right"
-        ],
-        "zone_coverage": {
-          "top-left": 3.27,
-          "top": 12.93,
-          "top-right": 2.31,
-          "left": 9.5,
-          "center": 58.809999999999995,
-          "right": 8.9,
-          "bottom-left": 16.39,
-          "bottom": 4.34,
-          "bottom-right": 1.41
-        },
-        "source": "zone_analysis"
-      }
-    ],
-    "ground_truth": []
+    "defects": [],
+    "all_defects": []
   },
   {
     "image": "IMG_5678_facade_masks.json",
@@ -4101,7 +3966,6 @@
           "left"
         ],
         "zones_present": [
-          "top",
           "right"
         ],
         "zone_coverage": {
@@ -4116,6 +3980,16 @@
           "bottom-right": 0.31
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          1392.0,
+          134.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -4129,7 +4003,6 @@
           "left"
         ],
         "zones_present": [
-          "top",
           "right"
         ],
         "zone_coverage": {
@@ -4144,9 +4017,18 @@
           "bottom-right": 0.31
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          1392.0,
+          134.0
+        ],
+        "source": "hole_without_screw"
       }
-    ],
-    "ground_truth": []
+    ]
   },
   {
     "image": "IMG_5679_facade_masks.json",
@@ -4173,8 +4055,7 @@
         ],
         "zones_present": [
           "top",
-          "left",
-          "right"
+          "left"
         ],
         "zone_coverage": {
           "top-left": 0,
@@ -4188,6 +4069,16 @@
           "bottom-right": 4.3100000000000005
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          1023.0,
+          357.5
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -4201,8 +4092,7 @@
         ],
         "zones_present": [
           "top",
-          "left",
-          "right"
+          "left"
         ],
         "zone_coverage": {
           "top-left": 0,
@@ -4216,9 +4106,18 @@
           "bottom-right": 4.3100000000000005
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          1023.0,
+          357.5
+        ],
+        "source": "hole_without_screw"
       }
-    ],
-    "ground_truth": []
+    ]
   },
   {
     "image": "IMG_5681_facade_masks.json",
@@ -4235,8 +4134,7 @@
       "glass_masks": 27
     },
     "defects": [],
-    "all_defects": [],
-    "ground_truth": []
+    "all_defects": []
   },
   {
     "image": "IMG_5700_facade_masks.json",
@@ -4263,8 +4161,7 @@
         ],
         "zones_present": [
           "top",
-          "bottom",
-          "right"
+          "bottom"
         ],
         "zone_coverage": {
           "top-left": 0.71,
@@ -4278,6 +4175,16 @@
           "bottom-right": 2.6600000000000006
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          792.5,
+          194.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -4291,8 +4198,7 @@
         ],
         "zones_present": [
           "top",
-          "bottom",
-          "right"
+          "bottom"
         ],
         "zone_coverage": {
           "top-left": 0.71,
@@ -4306,9 +4212,18 @@
           "bottom-right": 2.6600000000000006
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          792.5,
+          194.0
+        ],
+        "source": "hole_without_screw"
       }
-    ],
-    "ground_truth": []
+    ]
   },
   {
     "image": "IMG_5701_facade_masks.json",
@@ -4335,10 +4250,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "bottom",
-          "left",
-          "right"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 1.14,
@@ -4352,6 +4264,16 @@
           "bottom-right": 7.2700000000000005
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          835.0,
+          214.0
+        ],
+        "source": "hole_without_screw"
       }
     ],
     "all_defects": [
@@ -4365,10 +4287,7 @@
           "right"
         ],
         "zones_present": [
-          "top",
-          "bottom",
-          "left",
-          "right"
+          "top"
         ],
         "zone_coverage": {
           "top-left": 1.14,
@@ -4382,8 +4301,17 @@
           "bottom-right": 7.2700000000000005
         },
         "source": "zone_analysis"
+      },
+      {
+        "component": "screw",
+        "type": "missing",
+        "confidence": 0.85,
+        "hole_position": [
+          835.0,
+          214.0
+        ],
+        "source": "hole_without_screw"
       }
-    ],
-    "ground_truth": []
+    ]
   }
 ]
